@@ -13,8 +13,10 @@ def main():
   config_path = cmd_args.config_path
   if not os.path.exists(config_path):
     print('{} does not exist!'.format(config_path))
+    return
   if not os.path.isfile(config_path):
     print('{} is not a file!'.format(config_path))
+    return
 
   new_snapshot = Snapshot()
   with open(config_path) as config_file:

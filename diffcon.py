@@ -7,8 +7,10 @@ from snapshot import Snapshot
 def load_snapshot(snapshot_path):
   if not os.path.exists(snapshot_path):
     print('{} does not exist!'.format(snapshot_path))
+    return None
   if not os.path.isfile(snapshot_path):
     print('{} is not a file!'.format(snapshot_path))
+    return None
   new_snapshot = Snapshot()
   new_snapshot.load(snapshot_path)
   return new_snapshot
@@ -22,6 +24,8 @@ def main():
 
   new_snapshot = load_snapshot(cmd_args.new_snapshot)
   old_snapshot = load_snapshot(cmd_args.old_snapshot)
+  if new_snapshot is None or old_snapshot is None:
+    return
 
   new_items, deleted_items, modified_items = new_snapshot.compare(old_snapshot)
   print(new_items)

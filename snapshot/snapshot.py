@@ -21,6 +21,8 @@ class Snapshot:
       if directory in skip_directories:
         continue
 
+      print(directory)
+
       with os.scandir(directory) as entries:
         for entry in entries:
           if entry.is_dir(follow_symlinks=False):
